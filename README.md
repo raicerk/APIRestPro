@@ -8,6 +8,8 @@ Ejemplo de API Rest creada con nodejs y express
 * [Express](https://expressjs.com/en/starter/hello-world.html)
 
 
+
+
 #### Primera clase
 Fecha: 30-03-2020
 
@@ -17,6 +19,7 @@ Topicos: Introducción a nodejs, creación de una api rest con express, uso de e
 Fecha: 31-03-2020
 
 Topicos: Conectar la API Rest creada en la clase 1 con una base de datos de mongodb para dar persistencia a los datos
+
 
 
 
