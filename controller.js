@@ -1,58 +1,62 @@
 const uuid = require('uuid');
 
-var db = [];
-
 exports.add = (req, res) => {
 
     let { nombre, apellido, telefono } = req.body;
 
-    db = [...db, {
+    conn.collection("contactos").insertOne({
         uuid: uuid.v4(),
         nombre,
         apellido,
         telefono
-    }]
-
-    res.status(201).json({
-        response: "creado correctamente"
+    }).then(resp => {
+        console.log(resp.result);
+        res.status(201).json({
+            response: "creado correctamente"
+        })
     })
 }
 
 exports.get = (req, res) => {
-    res.status(201).json({
-        personas: db
-    })
+    conn.collection("contactos").find({}).toArray().then(resp => {
+        res.status(200).json({
+            personas: resp
+        })
+    });
 }
 
 exports.update = (req, res) => {
-    
+
     let { nombre, apellido, telefono } = req.body;
 
-    db = db.filter(item => item.uuid != req.params.uuid);
-
-    db = [...db, {
-        uuid: req.params.uuid,
-        nombre,
-        apellido,
-        telefono
-    }]
-
-    res.status(200).json({
-        response: "actualizado"
+    conn.collection("contactos").updateOne({ uuid: req.params.uuid }, {
+        $set: {
+            nombre,
+            apellido,
+            telefono
+        }
+    }).then(resp => {
+        console.log(resp.result);
+        res.status(200).json({
+            response: "actualizado"
+        })
     })
-
 }
 
 exports.delete = (req, res) => {
-    db = db.filter(item => item.uuid != req.params.uuid);
-    res.status(200).json({
-        response: "borrado correctamente"
+
+    conn.collection("contactos").deleteOne({ uuid: req.params.uuid }).then(resp => {
+        console.log(resp.result);
+        res.status(200).json({
+            response: "borrado correctamente"
+        })
     })
 }
 
 exports.getOne = (req, res) => {
-
-    res.status(200).json({
-        response: db.filter(item => item.uuid == req.params.uuid)
-    })
+    conn.collection("contactos").find({ uuid: req.params.uuid }).toArray().then(resp => {
+        res.status(200).json({
+            personas: resp
+        })
+    });
 }
