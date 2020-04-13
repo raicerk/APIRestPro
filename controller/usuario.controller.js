@@ -1,4 +1,5 @@
 const secure = require('../utils/security');
+const db = require('../utils/db');
 
 exports.add = (req, res) => {
 
@@ -16,7 +17,8 @@ exports.add = (req, res) => {
     })
 }
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
+    conn = await db.ConnectDB();
     let { usuario, contrasena } = req.body;
     conn.collection("usuarios").find({ usuario, contrasena, estado: true }).toArray().then(result => {
         if (result) {

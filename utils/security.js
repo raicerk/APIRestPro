@@ -10,14 +10,14 @@ exports.protegida = (req, res, next) => {
         }
         jwt.verify(token, 'apiclaudio', (err, decoded) => {
             if (err) {
-                return res.json(err);
+                return res.status(403).json(err);
             } else {
                 req.decoded = decoded;
                 next();
             }
         });
     } else {
-        res.send({
+        res.status(403).send({
             mensaje: 'Token no proveído.'
         });
     }
