@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const secure = require('./utils/security');
-const control = require("./controller/persona.controller");
+
+const user = require('./controller/usuario.controller');
+const person = require('./controller/persona.controller');
 
 var app = express();
 app.use(bodyParser.json());
@@ -15,10 +17,13 @@ app.get('/', (req, res) => {
     })
 });
 
-app.post('/personas', secure.protegida, control.add);
-app.get('/personas', secure.protegida, control.get);
-app.put('/personas/:uuid', secure.protegida, control.update);
-app.delete('/personas/:uuid', secure.protegida, control.delete);
-app.get('/personas/:uuid', secure.protegida, control.getOne);
+app.post('/usuario', user.add);
+app.post('/login', user.login);
+
+app.post('/personas', secure.protegida, person.add);
+app.get('/personas', secure.protegida, person.get);
+app.put('/personas/:uuid', secure.protegida, person.update);
+app.delete('/personas/:uuid', secure.protegida, person.delete);
+app.get('/personas/:uuid', secure.protegida, person.getOne);
 
 module.exports = app;

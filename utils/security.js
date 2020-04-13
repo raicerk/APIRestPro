@@ -8,9 +8,9 @@ exports.protegida = (req, res, next) => {
         if (token.startsWith('Bearer ')) {
             token = token.slice(7, token.length);
         }
-        jwt.verify(token, process.env.KEY, (err, decoded) => {
+        jwt.verify(token, 'apiclaudio', (err, decoded) => {
             if (err) {
-                return res.json({ mensaje: 'Token inválida' });
+                return res.json(err);
             } else {
                 req.decoded = decoded;
                 next();
@@ -18,7 +18,7 @@ exports.protegida = (req, res, next) => {
         });
     } else {
         res.send({
-            mensaje: 'Token no proveída.'
+            mensaje: 'Token no proveído.'
         });
     }
 }
@@ -27,6 +27,6 @@ exports.creaToken = () => {
     return jwt.sign(payload = {
         check: true
     }, 'apiclaudio', {
-        expiresIn: 1440
+        expiresIn: "2 days"
     });
 }
