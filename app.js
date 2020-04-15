@@ -1,15 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
-const control = require("./controller");
-const db = require("./db");
+const control = require("./controller/persona.controller");
 
 var app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(200).json({
-        saludo: "Hola a todo el mundo como estan?"
+        mensaje: "API Rest para Claudio"
     })
 });
 
@@ -19,7 +20,4 @@ app.put('/personas/:uuid', control.update);
 app.delete('/personas/:uuid', control.delete);
 app.get('/personas/:uuid', control.getOne);
 
-app.listen(3000, async () => {
-    conn = await db.ConnectDB();
-    console.log('Example app listening on port 3000!');
-});
+module.exports = app;
