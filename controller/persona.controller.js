@@ -2,6 +2,8 @@ const uuid = require('uuid');
 
 exports.add = (req, res) => {
 
+    let conn = req.app.locals.db;
+
     let { nombre, apellido, telefono } = req.body;
 
     conn.collection("contactos").insertOne({
@@ -18,6 +20,9 @@ exports.add = (req, res) => {
 }
 
 exports.get = (req, res) => {
+
+    let conn = req.app.locals.db;
+
     conn.collection("contactos").find({}).toArray().then(resp => {
         res.status(200).json({
             personas: resp
@@ -26,6 +31,8 @@ exports.get = (req, res) => {
 }
 
 exports.update = (req, res) => {
+
+    let conn = req.app.locals.db;
 
     let { nombre, apellido, telefono } = req.body;
 
@@ -45,6 +52,8 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
 
+    let conn = req.app.locals.db;
+
     conn.collection("contactos").deleteOne({ uuid: req.params.uuid }).then(resp => {
         console.log(resp.result);
         res.status(200).json({
@@ -54,6 +63,9 @@ exports.delete = (req, res) => {
 }
 
 exports.getOne = (req, res) => {
+
+    let conn = req.app.locals.db;
+    
     conn.collection("contactos").find({ uuid: req.params.uuid }).toArray().then(resp => {
         res.status(200).json({
             personas: resp

@@ -23,7 +23,7 @@ describe("Test e2e", () => {
             })
             .set('Content-Type', 'application/json')
             .then(response => {
-                //token = response.body.token;
+                token = response.body.token;
                 expect(response.statusCode).toBe(200);
                 done();
             })

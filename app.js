@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const secure = require('./utils/security');
+const db = require('./utils/db');
 
 const user = require('./controller/usuario.controller');
 const person = require('./controller/persona.controller');
@@ -16,6 +17,10 @@ app.get('/', (req, res) => {
         mensaje: "API Rest para Claudio"
     })
 });
+
+db.ConnectDB().then(conn =>{
+    app.locals.db = conn;
+})
 
 app.post('/usuario', user.add);
 app.post('/login', user.login);
