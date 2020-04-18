@@ -19,8 +19,7 @@
       "!**/*app.js",
       "!**/providers/**",
       "!**/coverage/**",
-      "!server.js",
-      "!**/utils/db.js"
+      "!server.js"
     ]
   },
   "keywords": [
