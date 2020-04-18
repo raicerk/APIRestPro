@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 
 var token = '';
+var uuid = '';
 
 describe("Test e2e", () => {
 
@@ -70,7 +71,7 @@ describe("Test e2e", () => {
             })
     });
 
-    test('Lista personas', done => {
+    test('Peticion sin token', done => {
         request(app)
             .get('/personas')
             .set('Content-Type', 'application/json')
@@ -80,7 +81,7 @@ describe("Test e2e", () => {
             })
     });
 
-    test('Lista personas', done => {
+    test('Peticion con token invalido', done => {
         request(app)
             .get('/personas')
             .set('Content-Type', 'application/json')
@@ -91,7 +92,7 @@ describe("Test e2e", () => {
             })
     });
 
-    test('Lista personas', done => {
+    test('Peticion con token con formato invalido', done => {
         request(app)
             .get('/personas')
             .set('Content-Type', 'application/json')
@@ -113,7 +114,46 @@ describe("Test e2e", () => {
             .set('Content-Type', 'application/json')
             .set('Authorization', `Bearer ${token}`)
             .then(response => {
+                uuid = response.body.persona.uuid;
                 expect(response.statusCode).toBe(201);
+                done();
+            })
+    });
+
+    test('Obtiene una persona', done => {
+        request(app)
+            .get(`/personas/${uuid}`)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `Bearer ${token}`)
+            .then(response => {
+                expect(response.statusCode).toBe(200);
+                done();
+            })
+    });
+
+    test('Actualizar persona', done => {
+        request(app)
+            .put(`/personas/${uuid}`)
+            .send({
+                "nombre": "CLaudillio",
+                "apellido": "Fuentesillo",
+                "telefono": "+56964564789"
+            })
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `Bearer ${token}`)
+            .then(response => {
+                expect(response.statusCode).toBe(200);
+                done();
+            })
+    });
+
+    test('Borrar persona', done => {
+        request(app)
+            .delete(`/personas/${uuid}`)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `Bearer ${token}`)
+            .then(response => {
+                expect(response.statusCode).toBe(200);
                 done();
             })
     });

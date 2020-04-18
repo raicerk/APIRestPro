@@ -13,7 +13,8 @@ exports.add = (req, res) => {
         telefono
     }).then(resp => {
         res.status(201).json({
-            response: "creado correctamente"
+            response: "creado correctamente",
+            persona: resp.ops[0]
         })
     })
 }
@@ -42,7 +43,6 @@ exports.update = (req, res) => {
             telefono
         }
     }).then(resp => {
-        console.log(resp.result);
         res.status(200).json({
             response: "actualizado"
         })
@@ -54,7 +54,6 @@ exports.delete = (req, res) => {
     let conn = req.app.locals.db;
 
     conn.collection("contactos").deleteOne({ uuid: req.params.uuid }).then(resp => {
-        console.log(resp.result);
         res.status(200).json({
             response: "borrado correctamente"
         })
