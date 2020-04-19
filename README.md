@@ -3,9 +3,11 @@
 Ejemplo de API Rest creada con nodejs y express
 
 #### Links relacionados: 
-* [Descargar nodejs](https://nodejs.org/es/download/)
+* [NodeJS](https://nodejs.org/es/download/)
 * [NPM](https://npmjs.com)
-* [Express](https://expressjs.com/en/starter/hello-world.html)
+* [Expressjs](https://expressjs.com/en/starter/hello-world.html)
+* [MongoDB](https://www.mongodb.com/download-center/community)
+* [Jest](http://jestjs.io)
 
 
 
@@ -20,7 +22,10 @@ Fecha: 31-03-2020
 
 Topicos: Conectar la API Rest creada en la clase 1 con una base de datos de mongodb para dar persistencia a los datos
 
+#### Tercera clase
+Fecha: 04-04-2020
 
+Topicos: Test unitarios, test de integracion y test E2E con jest para nodejs he implementacion de JWT como capa de seguridad para nuestra API Rest
 
 
 
