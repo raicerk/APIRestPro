@@ -10,6 +10,7 @@
     "coverage": "jest --coverage"
   },
   "jest": {
+    "bail": true,
     "verbose": true,
     "setupFiles": ["dotenv/config"],
     "collectCoverageFrom": [
