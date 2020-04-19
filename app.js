@@ -9,7 +9,7 @@ const user = require('./controller/usuario.controller');
 const person = require('./controller/persona.controller');
 
 if (process.env.NODE_ENV === "development") {
-    const env = require('dotenv').config();
+    require('dotenv').config();
 }
 
 var app = express();
