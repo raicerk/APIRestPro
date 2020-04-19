@@ -1,15 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const env = require('dotenv');
-
-env.config();
 
 const secure = require('./utils/security');
 const db = require('./utils/db');
 
 const user = require('./controller/usuario.controller');
 const person = require('./controller/persona.controller');
+
+if (process.env.NODE_ENV === "development") {
+    const env = require('dotenv').config();
+}
 
 var app = express();
 app.use(bodyParser.json());
