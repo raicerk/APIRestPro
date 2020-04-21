@@ -25,7 +25,7 @@ db.ConnectDB({
     PORT: process.env.MONGOPORT,
     HOST: process.env.MONGOSTRING,
     NAMEDB: process.env.MONGODBNAME
-}).then(conn =>{
+}).then(conn => {
     app.locals.db = conn;
 })
 

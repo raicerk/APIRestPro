@@ -11,7 +11,6 @@ exports.add = (req, res) => {
         contrasena,
         estado
     }).then(resp => {
-        console.log(resp.result);
         res.status(201).json({
             status: "Usuario agregado correctamente"
         })
@@ -25,10 +24,14 @@ exports.login = (req, res) => {
     let { usuario, contrasena } = req.body;
 
     conn.collection("usuarios").find({ usuario, contrasena, estado: true }).toArray().then(result => {
-        if (result) {
+        if (result.length == 1) {
             const token = secure.creaToken();
             res.status(200).json({
                 token
+            })
+        }else{
+            res.status(401).json({
+                "status": "error al crear el token"
             })
         }
     });
