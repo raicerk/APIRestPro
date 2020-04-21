@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "dev": "NODE_ENV=development npx nodemon server.js",
     "test": "jest",
     "coverage": "jest --coverage"
   },
