@@ -22,13 +22,13 @@ app.get('/', (req, res) => {
     })
 });
 
-db.ConnectDB({
-    PORT: process.env.MONGOPORT,
-    HOST: process.env.MONGOSTRING,
-    NAMEDB: process.env.MONGODBNAME
-}).then(conn => {
-    app.locals.db = conn;
-})
+  db.ConnectDB({
+      PORT: process.env.MONGOPORT || 27017,
+      HOST: process.env.MONGOSTRING || 'localhost',
+      NAMEDB: process.env.MONGODBNAME || 'api_rest_pro'
+  }).then(conn => {
+      app.locals.db = conn;
+  })
 
 app.post('/usuario', user.add);
 app.post('/login', user.login);
