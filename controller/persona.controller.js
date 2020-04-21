@@ -12,7 +12,6 @@ exports.add = (req, res) => {
         apellido,
         telefono
     }).then(resp => {
-        console.log(resp.result);
         res.status(201).json({
             response: "creado correctamente"
         })

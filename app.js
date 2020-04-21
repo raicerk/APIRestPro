@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const env = require('dotenv');
+
+env.config();
 
 const secure = require('./utils/security');
 const db = require('./utils/db');
@@ -18,7 +21,11 @@ app.get('/', (req, res) => {
     })
 });
 
-db.ConnectDB().then(conn =>{
+db.ConnectDB({
+    PORT: process.env.MONGOPORT,
+    HOST: process.env.MONGOSTRING,
+    NAMEDB: process.env.MONGODBNAME
+}).then(conn =>{
     app.locals.db = conn;
 })
 

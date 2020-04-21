@@ -40,6 +40,38 @@ describe("Test e2e", () => {
             })
     });
 
+    test('Lista personas', done => {
+        request(app)
+            .get('/personas')
+            .set('Content-Type', 'application/json')
+            .then(response => {
+                expect(response.statusCode).toBe(403);
+                done();
+            })
+    });
+
+    test('Lista personas', done => {
+        request(app)
+            .get('/personas')
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `Bearer 1234`)
+            .then(response => {
+                expect(response.statusCode).toBe(403);
+                done();
+            })
+    });
+
+    test('Lista personas', done => {
+        request(app)
+            .get('/personas')
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `1234`)
+            .then(response => {
+                expect(response.statusCode).toBe(403);
+                done();
+            })
+    });
+
     test('Agregar persona', done => {
         request(app)
             .post('/personas')

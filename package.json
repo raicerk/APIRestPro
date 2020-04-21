@@ -11,6 +11,7 @@
   },
   "jest": {
     "verbose": true,
+    "setupFiles": ["dotenv/config"],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
@@ -18,7 +19,8 @@
       "!**/*app.js",
       "!**/providers/**",
       "!**/coverage/**",
-      "!server.js"
+      "!server.js",
+      "!**/utils/db.js"
     ]
   },
   "keywords": [
@@ -37,6 +39,7 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "jest": "^25.3.0",
     "supertest": "^4.0.2"
   }
