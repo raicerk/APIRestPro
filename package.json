@@ -4,6 +4,7 @@
   "description": "API Rest con nodejs y expressjs",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js",
     "dev": "NODE_ENV=development npx nodemon server.js",
     "test": "jest",
@@ -12,7 +13,9 @@
   "jest": {
     "bail": true,
     "verbose": true,
-    "setupFiles": ["dotenv/config"],
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
@@ -41,6 +44,7 @@
   "devDependencies": {
     "dotenv": "^8.2.0",
     "jest": "^25.3.0",
+    "nodemon": "^2.0.3",
     "supertest": "^4.0.2"
   }
 }
