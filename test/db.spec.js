@@ -2,14 +2,17 @@ const db = require('../utils/db');
 
 describe("Test de MongoDB", () => {
 
-    test("Conexion correcta", async () => {
-        let esperado = "persona";
-        let resultado = await db.ConnectDB({
-            PORT: process.env.MONGOPORT,
-            HOST: process.env.MONGOSTRING,
-            NAMEDB: process.env.MONGODBNAME
+    test("Conexion correcta", () => {
+
+        // https://jestjs.io/docs/es-ES/asynchronous#promesas
+        let NAMEDB = "persona";
+        let resultado = db.ConnectDB({
+            PORT: process.env.MONGOPORT || 27017,
+            HOST: process.env.MONGOSTRING || 'localhost',
+            NAMEDB
         })
-        expect(resultado.databaseName).toStrictEqual(esperado)
+
+        return resultado.then(data => expect(data.databaseName).toStrictEqual(NAMEDB))
     });
 
     test("Conexion incorrecta", async () => {
