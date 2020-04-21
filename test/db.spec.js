@@ -13,16 +13,19 @@ describe("Test de MongoDB", () => {
         return resultado.then(data => expect(data.databaseName).toStrictEqual(NAMEDB))
     });
 
-    test("Conexion incorrecta", async () => {
-
-        await expect(db.ConnectDB({
-            PORT: 27018,
-            HOST: "mongodb://localhost",
-            NAMEDB: "un nombre"
-        })).rejects.toEqual({
+    test("Conexion incorrecta", () => {
+        let DERROR = {
             error: {
                 name: "MongoNetworkError"
             }
+        }
+        let resultado = db.ConnectDB({
+            PORT: 27018,
+            HOST: "mongodb://localhost",
+            NAMEDB: "un nombre"
         })
+
+        return resultado.catch(error => expect(error).toEqual(DERROR))
+
     });
 })
