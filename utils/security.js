@@ -1,5 +1,9 @@
 const jwt = require('jsonwebtoken');
 
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 exports.protegida = (req, res, next) => {
 
     let token = req.headers['authorization'];
@@ -8,7 +12,7 @@ exports.protegida = (req, res, next) => {
         if (token.startsWith('Bearer ')) {
             token = token.slice(7, token.length);
         }
-        jwt.verify(token, 'apiclaudio', (err, decoded) => {
+        jwt.verify(token, process.env.SALT, (err, decoded) => {
             if (err) {
                 return res.status(403).json(err);
             } else {
@@ -26,7 +30,7 @@ exports.protegida = (req, res, next) => {
 exports.creaToken = () => {
     return jwt.sign(payload = {
         check: true
-    }, 'apiclaudio', {
-        expiresIn: "2 days"
+    }, process.env.SALT, {
+        expiresIn: process.env.EXPIRETIME || "2 days"
     });
 }

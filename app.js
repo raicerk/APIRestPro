@@ -8,7 +8,7 @@ const db = require('./utils/db');
 const user = require('./controller/usuario.controller');
 const person = require('./controller/persona.controller');
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
