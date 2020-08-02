@@ -1,4 +1,4 @@
-![Nodejs CI](https://github.com/raicerk/APIRestPro/workflows/Node.js CI/badge.svg)
+![Nodejs CI](https://github.com/raicerk/APIRestPro/workflows/Node.js%20CI/badge.svg)
 
 # APIRestPro
 
