@@ -7,7 +7,9 @@
     "dev": "nodemon server.js NODE_ENV=development",
     "start": "node server.js",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "migrations": "migrate-mongo up",
+    "clean-migrations": "migrate-mongo down"
   },
   "jest": {
     "bail": true,
