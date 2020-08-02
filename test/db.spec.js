@@ -16,7 +16,21 @@ describe("Test de MongoDB", () => {
     test("Conexion incorrecta", () => {
         let DERROR = {
             error: {
-                name: "MongoServerSelectionError"
+                name: "MongoServerSelectionError",
+                reason: {
+                    "commonWireVersion": null,
+                    "compatibilityError": null,
+                    "compatible": true,
+                    "heartbeatFrequencyMS": 10000,
+                    "localThresholdMS": 15,
+                    "logicalSessionTimeoutMinutes": null,
+                    "maxElectionId": null,
+                    "maxSetVersion": null,
+                    "servers": {},
+                    "setName": null,
+                    "stale": false,
+                    "type": "Single",
+                }
             }
         }
         let resultado = db.ConnectDB({
