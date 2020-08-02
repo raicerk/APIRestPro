@@ -12,6 +12,7 @@
     "clean-migrations": "migrate-mongo down"
   },
   "jest": {
+    "testTimeout": 100000,
     "bail": true,
     "verbose": true,
     "setupFiles": [

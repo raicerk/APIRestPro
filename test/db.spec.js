@@ -16,7 +16,7 @@ describe("Test de MongoDB", () => {
     test("Conexion incorrecta", () => {
         let DERROR = {
             error: {
-                name: "MongoNetworkError"
+                name: "MongoServerSelectionError"
             }
         }
         let resultado = db.ConnectDB({
