@@ -4,6 +4,7 @@ exports.ConnectDB = (config) => {
   return new Promise((resolve, reject) => {
     let client = new mongoClient(`mongodb://${config.HOST}:${config.PORT}/`, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
       connectTimeoutMS: 1000,
       socketTimeoutMS: 1000
     });
