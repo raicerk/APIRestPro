@@ -1,3 +1,5 @@
+![Nodejs CI](https://github.com/raicerk/APIRestPro/workflows/Node.js CI/badge.svg)
+
 # APIRestPro
 
 Ejemplo de API Rest creada con nodejs y express
