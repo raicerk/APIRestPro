@@ -26,4 +26,4 @@ jobs:
     - run: npm ci
     - run: npm run clean-migrations
     - run: npm run migrations
-    - run: npm test
+    - run: SALT=APIRESTPRO npm run test
